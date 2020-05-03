@@ -43,6 +43,7 @@ public class ServerNet
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
         socket.Bind(ip_point);
         mClinetSocketList = new List<Socket>();
+        Console.WriteLine("Socket Connect");
 
         while (true)
         {
@@ -58,8 +59,8 @@ public class ServerNet
 
     void RunClient(ref Socket socket)
     {
-        Console.WriteLine("Socket Connect");
 
+        Console.WriteLine("Client Connect");
         String msg = "";
         while (true)
         {

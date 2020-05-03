@@ -16,11 +16,15 @@ class CrazyArcadeRequestHandler
     Socket mBombSocket2;
 
     string mMapData; // 서버 로컬에 저장된 mapdata
+    string mItemList;
 
     public void InitCrazyArcadeHandler()
     {
         // 0. 맵 정보 불러오기
         SetMapData();
+
+        // 1. 아이템 리스트 작성
+        SetItemList();
     }
 
     public StructRequest HandleRequest(StructRequest request, ref Socket socket)
@@ -66,6 +70,7 @@ class CrazyArcadeRequestHandler
         // 파라매터 생성
         Dictionary<string, string> dic_param = new Dictionary<string, string>();
         dic_param["mapData"] = mMapData;
+        dic_param["itemData"] = mItemList;
 
         // 유저 데이터에 저장
         request.uid = user_data.uid;
@@ -247,6 +252,19 @@ class CrazyArcadeRequestHandler
             return File.ReadAllText(path);
         }
         return "";
+    }
+
+    void SetItemList()
+    {
+        Random rand = new Random();
+        // 0 - 4 아이템
+        // 5 no 아이템
+        for (int i = 0; i < 100; i++)
+        {
+            int res = rand.Next(0, 5);
+            mItemList += res.ToString();
+        }
+
     }
 
 }
